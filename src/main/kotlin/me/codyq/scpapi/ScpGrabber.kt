@@ -6,21 +6,25 @@ import org.koin.dsl.module
 
 
 interface ScpService {
-    fun sayScp(id: Int): SCP
+    suspend fun sayScp(id: Int): SCP
 }
 
 class ScpServiceImpl(private val scpRepository: ScpRepository) : ScpService {
-    override fun sayScp(id: Int) = scpRepository.getScp(id)
+    override suspend fun sayScp(id: Int) = scpRepository.getScp(id)
 }
 
 class ScpRepository {
-    fun getScp(id: Int): SCP = SCP(
-        10,
-        id,
-        "Euclid",
-        "Box",
-        "Statue",
-        listOf<SCPImage>(SCPImage("url","test"))
-    )
+    suspend fun getScp(id: Int): SCP {
+        println(getXml(id))
+        return SCP(
+            10,
+            id,
+            "Euclid",
+            "Box",
+            "Statue",
+            listOf<SCPImage>(SCPImage("url","test"))
+        )
+    }
 }
+
 

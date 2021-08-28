@@ -8,12 +8,16 @@ import org.koin.dsl.module
 import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.inject
 import org.koin.logger.slf4jLogger
+import nl.adaptivity.xmlutil.serialization.ktor.xml
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.main(){
     install(DefaultHeaders)
     install(CallLogging)
+    install(ContentNegotiation) {
+        xml()
+    }
     install(Koin) {
         slf4jLogger()
         modules(scpAppModule)
@@ -24,8 +28,11 @@ fun Application.main(){
 
     routing {
         get("/scp/{id}"){
+
             val id = call.parameters["id"]!!.toInt()
             call.respondText(scp.sayScp(id).toString())
+
+
         }
     }
 

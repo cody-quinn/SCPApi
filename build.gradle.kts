@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-client-core:1.6.3")
+    implementation("io.ktor:ktor-client-cio:1.6.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
     implementation("io.ktor:ktor-server-core:1.6.3")
     implementation("io.ktor:ktor-server-netty:1.6.3")
@@ -21,6 +23,7 @@ dependencies {
     implementation("io.lettuce:lettuce-core:6.1.4.RELEASE")
     implementation("io.insert-koin:koin-ktor:3.1.2")
     implementation("io.insert-koin:koin-logger-slf4j:3.1.2")
+    implementation("io.github.pdvrieze.xmlutil:ktor:0.82.0")
 
 }
 

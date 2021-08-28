@@ -1,6 +1,5 @@
 package me.codyq.scpapi.models
 
-import io.lettuce.core.*
 import kotlinx.serialization.Serializable
 
 

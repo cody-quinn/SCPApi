@@ -2,7 +2,6 @@ package me.codyq.scpapi
 
 import io.lettuce.core.RedisClient
 import io.lettuce.core.api.StatefulRedisConnection
-import org.koin.dsl.module
 
 
 interface DbService {
