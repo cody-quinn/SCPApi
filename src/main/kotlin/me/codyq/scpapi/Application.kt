@@ -4,6 +4,7 @@ import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import org.koin.dsl.module
 import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.inject
 import org.koin.logger.slf4jLogger
@@ -29,4 +30,10 @@ fun Application.main(){
     }
 
 
+}
+
+val scpAppModule = module {
+    single<ScpService> { ScpServiceImpl(get()) }
+    single { ScpRepository() }
+    single<DbService> { DbServiceImpl("redis://127.0.0.1:6379") }
 }

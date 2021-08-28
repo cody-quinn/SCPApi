@@ -24,7 +24,3 @@ class ScpRepository {
     )
 }
 
-val scpAppModule = module {
-    single<ScpService> { ScpServiceImpl(get()) }
-    single { ScpRepository() }
-}

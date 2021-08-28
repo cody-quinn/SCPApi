@@ -15,7 +15,3 @@ class DbServiceImpl(private val uri: String) : DbService {
         return client.connect()
     }
 }
-
-val dbAppModule = module {
-    single<DbService> { DbServiceImpl("redis://127.0.0.1:6379") }
-}
