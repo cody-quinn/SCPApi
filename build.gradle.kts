@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.5.30"
+    kotlin("plugin.serialization") version "1.5.30"
     application
 }
 
@@ -13,6 +14,7 @@ repositories {
 }
 
 dependencies {
+    implementation( "org.seleniumhq.selenium",  "selenium-java", "2.41.0")
     implementation("io.ktor:ktor-client-core:1.6.3")
     implementation("io.ktor:ktor-client-cio:1.6.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
@@ -23,8 +25,6 @@ dependencies {
     implementation("io.lettuce:lettuce-core:6.1.4.RELEASE")
     implementation("io.insert-koin:koin-ktor:3.1.2")
     implementation("io.insert-koin:koin-logger-slf4j:3.1.2")
-    implementation("io.github.pdvrieze.xmlutil:ktor:0.82.0")
-
 }
 
 tasks.test {
