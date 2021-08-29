@@ -3,13 +3,15 @@ package me.codyq.scpapi
 import me.codyq.scpapi.models.SCP
 import me.codyq.scpapi.models.SCPImage
 import org.openqa.selenium.By
-import org.openqa.selenium.chrome.*
-import java.lang.Exception
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 
 
 fun genSCP(id: String): SCP{
     val url = "https://scp-wiki.wikidot.com/scp-$id"
-    val driver = ChromeDriver()
+    val options = ChromeOptions()
+    options.addArguments("--headless")
+    val driver = ChromeDriver(options)
     driver.get(url)
 
     val page = driver.findElementById("page-content").findElements(By.tagName("p")).map { it.text }
@@ -18,12 +20,12 @@ fun genSCP(id: String): SCP{
     val images = driver.findElementsByClassName("scp-image-block").map{
         it.findElement(By.className("image")).getAttribute("src")
     }
-    val imgs: ArrayList<SCPImage> = ArrayList<SCPImage>()
+    val img: ArrayList<SCPImage> = ArrayList()
 
     for (i in images){
         val index = images.indexOf(i)
         val image = SCPImage(images[index], caption[index])
-        imgs.add(image)
+        img.add(image)
     }
 
 
@@ -57,8 +59,7 @@ fun genSCP(id: String): SCP{
 
     }
 
-
-    return SCP(rating, itemNumber, objectClass, containment, desc, body, imgs)
+    return SCP(rating, itemNumber, objectClass, containment, desc, body, img)
 
 }
 

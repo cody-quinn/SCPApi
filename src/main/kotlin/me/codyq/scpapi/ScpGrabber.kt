@@ -1,8 +1,7 @@
 package me.codyq.scpapi
 
 import me.codyq.scpapi.models.SCP
-import me.codyq.scpapi.models.SCPImage
-import org.koin.dsl.module
+
 
 
 interface ScpService {
@@ -14,7 +13,7 @@ class ScpServiceImpl(private val scpRepository: ScpRepository) : ScpService {
 }
 
 class ScpRepository {
-    suspend fun getScp(id: String): SCP {
+    fun getScp(id: String): SCP {
         return genSCP(id)
     }
 }
