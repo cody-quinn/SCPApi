@@ -10,13 +10,14 @@ import org.openqa.selenium.chrome.ChromeOptions
 fun genSCP(id: String): SCP{
     val url = "https://scp-wiki.wikidot.com/scp-$id"
     val options = ChromeOptions()
-    options.addArguments("--headless")
+    options.addArguments()
     val driver = ChromeDriver(options)
     driver.get(url)
 
     val page = driver.findElementById("page-content").findElements(By.tagName("p")).map { it.text }
     val caption = driver.findElementsByClassName("scp-image-caption").map { it.text }
     val rating = driver.findElementByClassName("prw54353").text.toInt()
+    val logs = driver.findElementsByTagName("blockquote").map { it.text }
     val images = driver.findElementsByClassName("scp-image-block").map{
         it.findElement(By.className("image")).getAttribute("src")
     }
@@ -36,7 +37,7 @@ fun genSCP(id: String): SCP{
     var desc = ""
     for (element in page){
         try {
-            if (element[0] == '«' || element in caption){
+            if (element[0] == '«' || element in caption || logs.find { it.contains(element) } != null){
                 continue
             } else {
                 if (element.startsWith("Object Class: ")){
@@ -59,7 +60,7 @@ fun genSCP(id: String): SCP{
 
     }
 
-    return SCP(rating, itemNumber, objectClass, containment, desc, body, img)
+    return SCP(rating, itemNumber, objectClass, containment, desc, body, logs, img)
 
 }
 

@@ -11,6 +11,7 @@ data class SCP(
     val scpContainmentProcedures: String,
     val scpDescription: String,
     val scpBody: String,
+    val scpLogs: List<String>,
     val scpImages: List<SCPImage>?,
 )
 
