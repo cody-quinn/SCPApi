@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions
 fun genSCP(id: String): SCP{
     val url = "https://scp-wiki.wikidot.com/scp-$id"
     val options = ChromeOptions()
-    options.addArguments()
+    options.addArguments("--headless")
     val driver = ChromeDriver(options)
     driver.get(url)
 
