@@ -7,7 +7,7 @@ interface DbService {
     fun getConnection(): StatefulRedisConnection<String, String>
 }
 
-class DbServiceImpl(private val uri: String) : DbService {
+class DbServiceImpl(uri: String) : DbService {
     private val client: RedisClient = RedisClient.create(uri)
     private val connectionPool: StatefulRedisConnection<String, String> = client.connect()
 
