@@ -58,8 +58,8 @@ fun Application.main(){
             val home = File("src/main/resources/main.html")
             call.respondFile(home)
         }
-        get("/scp" ){
-            call.respondText("This page does nothing yet. Please refer to the homepage for help.")
+        get("/docs" ){
+            call.respondFile(File("src/main/resources/doc.html"))
         }
     }
 
