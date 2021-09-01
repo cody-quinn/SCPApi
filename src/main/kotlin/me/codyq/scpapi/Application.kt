@@ -52,11 +52,14 @@ fun Application.main(){
             val scpJsonStr = Json.encodeToString(scpObj)
             call.respond(scpJsonStr)
         }
+
+
         get("/"){
-            call.respondFile(File("homepage.html"))
+            val home = File("src/main/resources/main.html")
+            call.respondFile(home)
         }
-        get("/scp/"){
-            call.respondText("This page does nothing. Please refer to the homepage for help.")
+        get("/scp" ){
+            call.respondText("This page does nothing yet. Please refer to the homepage for help.")
         }
     }
 
